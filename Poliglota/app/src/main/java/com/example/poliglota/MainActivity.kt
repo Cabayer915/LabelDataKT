@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -59,20 +60,21 @@ fun Tela(name: String, modifier: Modifier = Modifier) {
     var double by remember { mutableStateOf("") }
     var doubleInvalido by remember { mutableStateOf(false) }
     var nota1 by remember { mutableStateOf("") }
-    var nota1Invalida by remember { mutableStateOf(false) }
     var nota2 by remember { mutableStateOf("") }
-    var nota2Invalida by remember { mutableStateOf(false) }
 
     val contexto = LocalContext.current
 
     Column (
         modifier = modifier
             .fillMaxSize()
-            .background(Color(0xFF1C1C1E)),
+            .background(Color(0xFF1C1C1E))
+            .padding(top = 32.dp)
+            .padding(bottom = 32.dp)
+            .padding(horizontal = 32.dp)
+        ,
         verticalArrangement = Arrangement.SpaceBetween,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Text(text = "$name jkl")
 
         // Campo de nome
         TextField(
@@ -159,18 +161,10 @@ fun Tela(name: String, modifier: Modifier = Modifier) {
 
         // Campo de nota1 (String)
         TextField(
-            label = { Text("Numero") },
             value = nota1,
+            onValueChange = { nota1 = it },
+            label = { Text(stringResource(R.string.nota1)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            onValueChange = { digitadoNumero ->
-                nota1 = digitadoNumero
-                nota1Invalida = try {
-                    digitadoNumero.toInt() // Tentativa de conversão para Int
-                    false
-                } catch (e: NumberFormatException) {
-                    true
-                }
-            },
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedLabelColor = Color.White,
                 cursorColor = Color(0xFFFF3B47),
@@ -189,18 +183,10 @@ fun Tela(name: String, modifier: Modifier = Modifier) {
 
         // Campo de nota2 (String)
         TextField(
-            label = { Text("Numero") },
             value = nota2,
+            onValueChange = { nota2 = it },
+            label = { Text(stringResource(R.string.nota2)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
-            onValueChange = { digitadoNumero ->
-                nota2 = digitadoNumero
-                nota2Invalida = try {
-                    digitadoNumero.toInt() // Tentativa de conversão para Int
-                    false
-                } catch (e: NumberFormatException) {
-                    true
-                }
-            },
             colors = TextFieldDefaults.textFieldColors(
                 unfocusedLabelColor = Color.White,
                 cursorColor = Color(0xFFFF3B47),
@@ -217,14 +203,6 @@ fun Tela(name: String, modifier: Modifier = Modifier) {
                 .padding(bottom = 16.dp)
         )
 
-        // Exibe valores
-        Text(text = stringResource(R.string.boa_noite))
-
-        // Converte numero e double para os tipos apropriados antes de usar
-        val numeroInt = numero.toIntOrNull() ?: 0
-        val doubleDouble = double.toDoubleOrNull() ?: 0.0
-        Text(text = stringResource(R.string.msg_auxilio, nome, numeroInt, doubleDouble))
-
         // Converte numero e double para os tipos apropriados antes de enviar
         Button(onClick = {
             val tela2 = Intent(contexto, Tela2::class.java)
@@ -239,8 +217,29 @@ fun Tela(name: String, modifier: Modifier = Modifier) {
 
             contexto.startActivity(tela2)
         }) {
-            Text(text = "Ir para segunda tela")
+            Text(text = stringResource(R.string.btn_segundatela))
         }
+
+        Button(onClick = {
+            val intent = Intent(contexto, Tela3::class.java)
+            intent.putExtra("nota1", nota1.toDoubleOrNull() ?: 0.0)
+            intent.putExtra("nota2", nota2.toDoubleOrNull() ?: 0.0)
+            contexto.startActivity(intent)
+        }) {
+            Text(stringResource(R.string.btn_avaliacao))
+        }
+
+        // Exibe valores
+        Text(text = stringResource(R.string.boa_noite),
+            color = Color.White
+        )
+
+        // Converte numero e double para os tipos apropriados antes de usar
+        val numeroInt = numero.toIntOrNull() ?: 0
+        val doubleDouble = double.toDoubleOrNull() ?: 0.0
+        Text(text = stringResource(R.string.msg_auxilio, nome, numeroInt, doubleDouble),
+            color = Color.White
+            )
 
     }
 }

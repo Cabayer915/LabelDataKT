@@ -1,6 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Lady Gaga</string>
     <string name="boa_noite">Tenha uma boa noite</string>
-    <string name="msg_auxilio">Olá, %1$s você tem %2$d filhos e seu auxilio será de R$ %3$.2f</string>
+    <string name="msg_auxilio">Olá, %1$s você tem %2$d filhos e seu auxílio será de R$ %3$.2f</string>
+    <string name="msg_calculo" translatable="false">A média foi de %1$.2f Resultado: %2$s</string>
+    <string name="btn_segundatela" translatable="false">Ir para segunda tela</string>
+    <string name="btn_avaliacao" translatable="false">Avaliar Aluno</string>
+    <string name="nota1" translatable="false">Nota 1</string>
+    <string name="nota2" translatable="false">Nota 2</string>
+    <string name="nome" translatable="false">Nome</string>
+    <string name="numero" translatable="false">Número</string>
+    <string name="ddouble" translatable="false">Double</string>
     <string name="title_activity_tela2" translatable="false">Tela2</string>
+    <string name="title_activity_tela3" translatable="false">Tela3</string>
 </resources>

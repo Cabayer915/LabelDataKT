@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Lady Gaga</string>
+    <string name="boa_noite">Sleep tight</string>
+    <string name="msg_auxilio">Hey, %1$s u have %2$d kids nd your help your help is gonna be %3$.2f</string>
+</resources>
